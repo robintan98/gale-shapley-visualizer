@@ -1,4 +1,5 @@
 import Header from './components/Header.js';
+import Options from './components/Options.js';
 import './css/App.css';
 
 function App() {
