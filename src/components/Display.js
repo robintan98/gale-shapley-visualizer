@@ -4,22 +4,23 @@ import '../css/Display.css';
 
 function Display(props) {
 
-    const [inputState, setInputState] = useState(new Map()); // global state for all input data
+    const [showWarning, setShowWarning] = useState(false);
 
     const leftElems = [];
     for (var i = 1; i <= props.numPeople; i++) {
-        leftElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={true} setInputState={setInputState}/>);
+        leftElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={true} setInputState={props.setInputState}/>);
     }
 
     const rightElems = [];
     for (var i = 1; i <= props.numPeople; i++) {
-        rightElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={false} setInputState={setInputState}/>);
+        rightElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={false} setInputState={props.setInputState}/>);
     }
     const handleSubmit = () => {
         if (!validateData()) {
-            alert("input sucks");
+            setShowWarning(true);
         } else {
-            alert("input good!");
+            setShowWarning(false);
+            props.setShowSim(true);
         }
     }
 
@@ -32,25 +33,35 @@ function Display(props) {
         return true;
     }
 
+    const setEquals = (set1, set2) => {
+        var array1 = Array.from(set1);
+        array1.sort();
+
+        var array2 = Array.from(set2);
+        array2.sort();
+        
+        return JSON.stringify(array1) === JSON.stringify(array2);
+    }
+
     const validateData = () => {
         // Check if inputs are well-formed
         var prefixes = ["M", "W"];
         for (var i = 0; i < 2; i++) {
             for (var j = 1; j <= props.numPeople; j++) {
-                if (!((prefixes[i] + j) in inputState)) {
+                if (!((prefixes[i] + j) in props.inputState)) {
                     return false;
                 }
 
-                if (inputState[prefixes[i] + j].length == 0) {
+                if (props.inputState[prefixes[i] + j].length == 0) {
                     return false;
                 }
 
                 for (var k = 1; k <= props.numPeople; k++) {
-                    if (!((prefixes[i] + j + "-P" + k) in inputState)) {
+                    if (!((prefixes[i] + j + "-P" + k) in props.inputState)) {
                         return false;
                     }
 
-                    if (inputState[prefixes[i] + j + "-P" + k].length == 0) {
+                    if (props.inputState[prefixes[i] + j + "-P" + k].length == 0) {
                         return false;
                     }
                 }
@@ -60,13 +71,13 @@ function Display(props) {
         // Get sets of men and women
         var menList = []
         for (var i = 1; i <= props.numPeople; i++) {
-            menList.push(inputState["M" + i]);
+            menList.push(props.inputState["M" + i]);
         }
         var menSet = new Set(menList);
 
         var womenList = []
         for (var i = 1; i <= props.numPeople; i++) {
-            womenList.push(inputState["W" + i]);
+            womenList.push(props.inputState["W" + i]);
         }
         var womenSet = new Set(womenList);
 
@@ -80,7 +91,7 @@ function Display(props) {
             for (var j = 1; j <= props.numPeople; j++) {
                 var prefList = []
                 for (var k = 1; k <= props.numPeople; k++) {
-                    prefList.push(inputState[prefixes[i] + j + "-P" + k]);
+                    prefList.push(props.inputState[prefixes[i] + j + "-P" + k]);
                 }
                 var prefSet = new Set(prefList);
                 if (i == 0 && !setEquals(prefSet, womenSet)) {
@@ -92,16 +103,6 @@ function Display(props) {
         }
 
         return true;
-    }
-
-    const setEquals = (set1, set2) => {
-        var array1 = Array.from(set1);
-        array1.sort();
-
-        var array2 = Array.from(set2);
-        array2.sort();
-        
-        return JSON.stringify(array1) === JSON.stringify(array2);
     }
 
     return (
@@ -117,8 +118,9 @@ function Display(props) {
                     {rightElems}
                 </div>
             </div>
-            {JSON.stringify(inputState)}
+            {JSON.stringify(props.inputState)}
             <button class="SubmitButton" onClick={handleSubmit}>Submit</button>
+            {showWarning && <h2>input wrong!</h2>}
         </React.Fragment>
     );
 }
