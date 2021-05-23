@@ -1,0 +1,22 @@
+.DisplayArea {
+    /* background-color: aliceblue; */
+    margin: 10px 0% 10px 0%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.DisplayLeftColumn {
+    flex: 1 0 auto;
+    /* background-color: red; */
+}
+
+.DisplayMidColumn {
+    flex: none;
+    width: 10%;
+    /* background-color: green; */
+}
+
+.DisplayRightColumn {
+    flex: 1 0 auto;
+    /* background-color: blue; */
+}
