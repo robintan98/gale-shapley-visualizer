@@ -175,10 +175,10 @@ function Options() {
             type: "Move In", man: "M1", woman: "W1"
         },
         {
-            type: "Flash Center", color: "green"
+            type: "Flash Center", color: "#80F7A8"
         },
         {
-            type: "Move Out", man: "M1", woman: "W1", color: "#80F7A8"
+            type: "Move Out", man: "M1", woman: "W1", color: "#FF5F5F"
         },
         {
             type: "Free Preference", id: "M1-P1"
@@ -194,13 +194,13 @@ function Options() {
             type: "Flash Center", color: "green"
         },
         {
-            type: "Move Out", man: "M2", woman: "W1", color: "#80F7A8"
-        },
-        {
-            type: "Free Preference", id: "M2-P1"
+            type: "Move Out", man: "M2", woman: "W1", color: "#FF5F5F"
         },
         {
             type: "Free Person", id: "M1"
+        },
+        {
+            type: "Free Preference", id: "M2-P1"
         },
 
         {
@@ -213,7 +213,7 @@ function Options() {
             type: "Flash Center", color: "green"
         },
         {
-            type: "Move Out", man: "M1", woman: "W2", color: "#80F7A8"
+            type: "Move Out", man: "M1", woman: "W2", color: "#6A5FFF"
         },
         {
             type: "Free Preference", id: "M1-P2"

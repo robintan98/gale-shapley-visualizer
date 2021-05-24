@@ -1,32 +1,99 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../css/Simulation.css';
 import ReactAnime from 'react-animejs'
-// import Anime from 'react-anime';
 
-const {Anime, stagger} = ReactAnime;
+const { Anime } = ReactAnime;
 
 function Simulation(props) {
 
     const centerRef = useRef(null);
-    const M1Ref = useRef(null);
-    const W1Ref = useRef(null);
-
-    const M2Ref = useRef(null);
-    const W2Ref = useRef(null);
 
     const [centerCoordLeftX, setCenterCoordLeftX] = useState();
     const [centerCoordRightX, setCenterCoordRightX] = useState();
     const [centerCoordY, setCenterCoordY] = useState();
 
+    const M1Ref = useRef(null);
+    const W1Ref = useRef(null);
+    const M2Ref = useRef(null);
+    const W2Ref = useRef(null);
+    const M3Ref = useRef(null);
+    const W3Ref = useRef(null);
+    const M4Ref = useRef(null);
+    const W4Ref = useRef(null);
+
     const [M1CoordX, setM1CoordX] = useState();
     const [M1CoordY, setM1CoordY] = useState();
-    const [W1CoordX, setW1CoordX] = useState();
-    const [W1CoordY, setW1CoordY] = useState();
-
     const [M2CoordX, setM2CoordX] = useState();
     const [M2CoordY, setM2CoordY] = useState();
+    const [M3CoordX, setM3CoordX] = useState();
+    const [M3CoordY, setM3CoordY] = useState();
+    const [M4CoordX, setM4CoordX] = useState();
+    const [M4CoordY, setM4CoordY] = useState();
+
+    const [W1CoordX, setW1CoordX] = useState();
+    const [W1CoordY, setW1CoordY] = useState();
     const [W2CoordX, setW2CoordX] = useState();
     const [W2CoordY, setW2CoordY] = useState();
+    const [W3CoordX, setW3CoordX] = useState();
+    const [W3CoordY, setW3CoordY] = useState();
+    const [W4CoordX, setW4CoordX] = useState();
+    const [W4CoordY, setW4CoordY] = useState();
+
+    const idToCoordX = {
+        "M1": M1CoordX,
+        "M2": M2CoordX,
+        "M3": M3CoordX,
+        "M4": M4CoordX,
+        "W1": W1CoordX,
+        "W2": W2CoordX,
+        "W3": W3CoordX,
+        "W4": W4CoordX,
+    }
+
+    const idToCoordY = {
+        "M1": M1CoordY,
+        "M2": M2CoordY,
+        "M3": M3CoordY,
+        "M4": M4CoordY,
+        "W1": W1CoordY,
+        "W2": W2CoordY,
+        "W3": W3CoordY,
+        "W4": W4CoordY,
+    }
+
+    const idToRef = {
+        "M1": M1Ref,
+        "M2": M2Ref,
+        "M3": M3Ref,
+        "M4": M4Ref,
+        "W1": W1Ref,
+        "W2": W2Ref,
+        "W3": W3Ref,
+        "W4": W4Ref,
+    }
+
+    const idToSetterX = {
+        "M1": setM1CoordX,
+        "M2": setM2CoordX,
+        "M3": setM3CoordX,
+        "M4": setM4CoordX,
+        "W1": setW1CoordX,
+        "W2": setW2CoordX,
+        "W3": setW3CoordX,
+        "W4": setW4CoordX,
+    }
+
+    const idToSetterY = {
+        "M1": setM1CoordY,
+        "M2": setM2CoordY,
+        "M3": setM3CoordY,
+        "M4": setM4CoordY,
+        "W1": setW1CoordY,
+        "W2": setW2CoordY,
+        "W3": setW3CoordY,
+        "W4": setW4CoordY,
+    }
+
     const [toggleAnime, setToggleAnime] = useState(false);
 
     useEffect(() => {
@@ -34,220 +101,176 @@ function Simulation(props) {
         setCenterCoordRightX(centerRef.current.getBoundingClientRect().right);
         setCenterCoordY((centerRef.current.getBoundingClientRect().top + centerRef.current.getBoundingClientRect().bottom) / 2);
 
-        setM1CoordX(M1Ref.current.getBoundingClientRect().left);
-        setM1CoordY(M1Ref.current.getBoundingClientRect().top);
-        setW1CoordX(W1Ref.current.getBoundingClientRect().right);
-        setW1CoordY(W1Ref.current.getBoundingClientRect().top);
+        for (var i = 1; i <= props.numPeople; i++) {
+            const setterMX = idToSetterX["M" + i];
+            const setterWX = idToSetterX["W" + i];
+            const setterMY = idToSetterY["M" + i];
+            const setterWY = idToSetterY["W" + i];
 
-        setM2CoordX(M2Ref.current.getBoundingClientRect().left);
-        setM2CoordY(M2Ref.current.getBoundingClientRect().top);
-        setW2CoordX(W2Ref.current.getBoundingClientRect().right);
-        setW2CoordY(W2Ref.current.getBoundingClientRect().top);
+            const mRef = idToRef["M" + i];
+            const wRef = idToRef["W" + i];
+
+            setterMX(mRef.current.getBoundingClientRect().left);
+            setterWX(wRef.current.getBoundingClientRect().right);
+
+            setterMY(mRef.current.getBoundingClientRect().top);
+            setterWY(wRef.current.getBoundingClientRect().top);
+        }
 
         setToggleAnime(true);
     })
 
-    var keyframes = [
-        {
-            targets: "#M1-P1",
-            delay: 1000,
-            duration: 500,
-            fontWeight: '900',
-            easing: 'easeInOutSine',
-            backgroundColor: '#E5E5E5'
-        },
+    var timeline = [];
+    for (const keyframe of props.simInstructions) {
+        switch(keyframe.type) {
+            case 'Move In':
+                timeline.push(
+                {
+                    targets: "#" + keyframe.man,
+                    translateX: centerCoordLeftX - idToCoordX[keyframe.man] + 10,
+                    translateY: centerCoordY - idToCoordY[keyframe.man] - 20,
+                    delay: 1000,
+                    duration: 1000,
+                    easing: 'easeInOutSine',
+                })
 
-        {
-            targets: "#M1",
-            translateX: centerCoordLeftX - M1CoordX + 10,
-            translateY: centerCoordY - M1CoordY - 20,
-            delay: 1000,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W1",
-            translateX: centerCoordRightX - W1CoordX - 10,
-            translateY: centerCoordY - W1CoordY - 20,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#80F7A8',
-            delay: 1000,
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#FFFFFF',
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W1",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-            borderColor: '#FF5F5F',
-        },
-        {
-            targets: "#M1",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-            borderColor: '#FF5F5F',
-        },
-        {
-            targets: "#M1-P1",
-            delay: 1000,
-            duration: 500,
-            opacity: 0,
-            easing: 'easeInOutSine',
-        },
+                timeline.push(
+                {
+                    targets: "#" + keyframe.woman,
+                    translateX: centerCoordRightX - idToCoordX[keyframe.woman] - 10,
+                    translateY: centerCoordY - idToCoordY[keyframe.woman] - 20,
+                    duration: 1000,
+                    duration: 1000,
+                    easing: 'easeInOutSine',
+                })
+                break;
+            case 'Move Out':
+                timeline.push(
+                    {
+                        targets: "#" + keyframe.woman,
+                        translateX: 0,
+                        translateY: 0,
+                        easing: 'easeInOutSine',
+                        borderColor: keyframe.color,
+                })
 
+                timeline.push(
+                {
+                    targets: "#" + keyframe.man,
+                    translateX: 0,
+                    translateY: 0,
+                    easing: 'easeInOutSine',
+                    borderColor: keyframe.color,
+                })
+                break;
+            case 'Flash Center':
+                timeline.push(
+                {
+                    targets: "#Center",
+                    backgroundColor: '#80F7A8',
+                    delay: 1000,
+                    duration: 500,
+                    easing: 'easeInOutSine',
+                })
 
+                timeline.push(
+                {
+                    targets: "#Center",
+                    backgroundColor: '#FFFFFF',
+                    duration: 500,
+                    easing: 'easeInOutSine',
+                })
+                break;
+            case 'Free Preference':
+                timeline.push(
+                {
+                    targets: "#" + keyframe.id,
+                    delay: 1000,
+                    duration: 500,
+                    opacity: 0,
+                    easing: 'easeInOutSine',
+                })
+                break;
+            case 'Bold Preference':
+                timeline.push(
+                {
+                    targets: "#" + keyframe.id,
+                    delay: 1000,
+                    duration: 500,
+                    fontWeight: '900',
+                    easing: 'easeInOutSine',
+                    backgroundColor: '#E5E5E5'
+                })
+                break;
+            case 'Free Person':
+                timeline.push(
+                {
+                    targets: "#M1",
+                    easing: 'easeInOutSine',
+                    borderColor: '#C1C1C1',
+                })
+                break;
+            default:
+          }
+    }
 
-        {
-            targets: "#M2",
-            translateX: centerCoordLeftX - M2CoordX + 10,
-            translateY: centerCoordY - M2CoordY - 20,
-            delay: 1000,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W1",
-            translateX: centerCoordRightX - W1CoordX - 10,
-            translateY: centerCoordY - W1CoordY - 20,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#80F7A8',
-            delay: 1000,
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#FFFFFF',
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W1",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#M2",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-            borderColor: '#FF5F5F',
-        },
+    const leftElems = []
+    const rightElems = []
+    for (var i = 1; i <= props.numPeople; i++) {
+        var leftPreferences = []
+        var rightPreferences = []
+        for (var j = 1; j <= props.numPeople; j++) {
+            leftPreferences.push(
+                <div className="LeftPreference">
+                    <div type="text" class="PreferenceInput" maxlength="6" id={"M" + i + "-P" + j}>
+                        Lady {i} 
+                    </div>
+                </div>
+            );
 
-        {
-            targets: "#M1",
-            easing: 'easeInOutSine',
-            borderColor: '#C1C1C1',
-        },
+            rightPreferences.push(
+                <div className="RightPreference">
+                    <div type="text" class="PreferenceInput" maxlength="6" id={"W" + i + "-P" + j}>
+                        Man {i}
+                    </div>
+                </div>
+            );
+        }
 
-        {
-            targets: "#M1",
-            translateX: centerCoordLeftX - M1CoordX + 10,
-            translateY: centerCoordY - M1CoordY - 20,
-            delay: 1000,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W2",
-            translateX: centerCoordRightX - W2CoordX - 10,
-            translateY: centerCoordY - W2CoordY - 20,
-            duration: 1000,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#80F7A8',
-            delay: 1000,
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#Center",
-            backgroundColor: '#FFFFFF',
-            duration: 500,
-            easing: 'easeInOutSine',
-        },
-        {
-            targets: "#W2",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-            borderColor: '#6A5FFF'
-        },
-        {
-            targets: "#M1",
-            translateX: 0,
-            translateY: 0,
-            easing: 'easeInOutSine',
-            borderColor: '#6A5FFF'
-        },
-    ];
+        leftElems.push(
+            <div className="LeftEntryArea">
+                <div className="PreferenceArea">
+                    {leftPreferences}
+                </div>
+                <div className="LeftPerson">
+                    <div type="text" class="PersonInput" maxlength="6" id={"M" + i} ref={idToRef["M" + i]}>
+                        Man {i}
+                    </div>
+                </div>
+            </div>
+        );
+
+        rightElems.push(
+            <div className="RightEntryArea">
+                <div className="RightPerson">
+                    <div type="text" class="PersonInput" maxlength="6" id={"W" + i} ref={idToRef["W" + i]}>
+                        Lady {i}
+                    </div>
+                </div>
+                <div className="PreferenceArea">
+                    {rightPreferences}
+                </div>
+            </div>
+        );
+    }
+
 
     return (
         <React.Fragment>
-            {toggleAnime && <Anime initial={keyframes}></Anime>}
+            {toggleAnime && <Anime initial={timeline}></Anime>}
             <div className="DisplayArea">
                 <div className="DisplayLeftColumn">
-                    <div className="LeftEntryArea">
-                        {/* <div className="PreferenceArea">
-                            {preferenceElems}
-                        </div> */}
-                        <div className="PreferenceArea">
-                            <div className="LeftPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="M1-P1" required placeholder={"Lady " + 1}>Lady 1
-                                </div>
-                            </div>
-                            <div className="LeftPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="M1-P2" required placeholder={"Lady " + 2}> Lady 2
-                                </div>
-                            </div>
-                        </div>
-                        <div className="LeftPerson">
-                            <div type="text" class="PersonInput" maxlength="6" id={"M" + 1} required 
-                                placeholder={"Man " + 1} ref={M1Ref}>Man 1</div>
-                        </div>
-                    </div>
-                    <div className="LeftEntryArea">
-                        {/* <div className="PreferenceArea">
-                            {preferenceElems}
-                        </div> */}
-                        <div className="PreferenceArea">
-                            <div className="LeftPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="M2-P1" required placeholder={"Lady " + 1}> Lady 1
-                                </div>
-                            </div>
-                            <div className="LeftPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="M2-P2" required placeholder={"Lady " + 2}> Lady 2
-                                </div>
-                            </div>
-                        </div>
-                        <div className="LeftPerson">
-                            <div type="text" class="PersonInput" maxlength="6" id={"M" + 2} required 
-                                placeholder={"Man " + 2} ref={M2Ref}>Man 2</div>
-                        </div>
-                    </div>
+                    {leftElems}
                 </div>
 
                 <div className="DisplayMidColumn">
@@ -255,48 +278,7 @@ function Simulation(props) {
                 </div>
 
                 <div className="DisplayRightColumn">
-                    <div className="RightEntryArea">
-                        <div className="RightPerson">
-                            <div type="text" class="PersonInput" maxlength="6" id={"W" + 1} required 
-                                placeholder={"Lady " + 1} ref={W1Ref}>Lady 1</div>
-                        </div>
-                        {/* <div className="PreferenceArea">
-                            {preferenceElems}
-                        </div> */}
-                        <div className="PreferenceArea">
-                            <div className="RightPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="W1-P1" required placeholder={"Man " + 1}> Man 1
-                                </div>
-                            </div>
-                            <div className="RightPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="W1-P2" required placeholder={"Man " + 2}> Man 2
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="RightEntryArea">
-                        <div className="RightPerson">
-                            <div type="text" class="PersonInput" maxlength="6" id={"W" + 2} required 
-                                placeholder={"Lady " + 2} ref={W2Ref}>Lady 2</div>
-                        </div>
-                        {/* <div className="PreferenceArea">
-                            {preferenceElems}
-                        </div> */}
-                        <div className="PreferenceArea">
-                            <div className="RightPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="W2-P1" required placeholder={"Man " + 1}> Man 1
-                                </div>
-                            </div>
-                            <div className="RightPreference">
-                                <div type="text" class="PreferenceInput"
-                                    maxlength="6" id="W2-P2" required placeholder={"Man " + 2}> Man 2
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {rightElems}
                 </div> 
             </div>
         </React.Fragment>
