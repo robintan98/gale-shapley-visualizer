@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../css/Simulation.css';
 import ReactAnime from 'react-animejs'
 // import Anime from 'react-anime';
@@ -7,74 +7,106 @@ const {Anime, stagger} = ReactAnime;
 
 function Simulation(props) {
 
-    // const keyframes = [
-    //     {
-    //     translateX: 50, translateY: 50, duration: 1000, delay: 1000, easing: 'easeInOutSine'
-    //     },
-    //     {
-    //     translateX: 0, translateY: 0, duration: 1000, delay: 1000, easing: 'easeInOutSine'
-    //     },
-    //     {
-    //     translateX: 50, translateY: 50, duration: 1000, delay: 1000, easing: 'easeInOutSine'
-    //     },
-    //     {
-    //     translateX: 0, translateY: 0, duration: 1000, delay: 1000, easing: 'easeInOutSine'
-    //     },
-    //     {border: '1px solid red', duration: 1000},
-    //     {opacity: 0, duration: 1000}
-    // ];
+    const centerRef = useRef(null);
+    const M1Ref = useRef(null);
 
-    return (
-        <React.Fragment>
-            {/* <Anime
-            initial={[
-                {
-                targets: "#tester",
-                keyframes: keyframes,
-                // easing:'spring',
-                // duration: 3500,
-                // loop: true
-                }
-            ]}
-            ><div id="tester">tester</div>
-            </Anime> */}
-            <Anime
-      initial={[
+    const [centerCoordX, setCenterCoordX] = useState();
+    const [centerCoordY, setCenterCoordY] = useState();
+    const [M1CoordX, setM1CoordX] = useState();
+    const [M1CoordY, setM1CoordY] = useState();
+    const [toggleAnime, setToggleAnime] = useState(false);
+
+    useEffect(() => {
+        setCenterCoordX(centerRef.current.getBoundingClientRect().left);
+        setCenterCoordY((centerRef.current.getBoundingClientRect().top + centerRef.current.getBoundingClientRect().bottom) / 2);
+
+        setM1CoordX(M1Ref.current.getBoundingClientRect().left);
+        setM1CoordY(M1Ref.current.getBoundingClientRect().top);
+
+        setToggleAnime(true);
+    })
+
+    var keyframes = [
         { //1st segment
-          targets: "#a",
-          translateX: 250,
+          targets: "#M1",
+          translateX: centerCoordX - M1CoordX,
+          translateY: centerCoordY - M1CoordY,
           delay: 1000,
-          direction: "alternate"
+          easing: 'easeInOutSine',
+        //   border: '1px solid green'
         },
         { //2nd
           targets: "#b",
           translateX: 250,
-          delay: 1000
+          delay: 1000,
+          easing: 'easeInOutSine'
         },
         { //3rd
           targets: "#c",
           translateX: 250,
-          delay: 1000
+          delay: 1000,
+          easing: 'easeInOutSine'
         }
-      ]}
-    ></Anime>
-    <div id="a">a</div>
-    <div id="b">b</div>
-    <div id="c">c</div>
-            
+    ];
+
+    // const centerCircle = document.querySelector("#CenterCircle");
+
+    return (
+        <React.Fragment>
+            {/* {console.log(centerCoords)} */}
+            {toggleAnime && <Anime initial={keyframes}></Anime>}
+            <div className="DisplayArea">
+                <div className="DisplayLeftColumn">
+                    <div className="LeftEntryArea">
+                        {/* <div className="PreferenceArea">
+                            {preferenceElems}
+                        </div> */}
+                        <div className="LeftPerson">
+                            <div type="text" class="PersonInput" maxlength="6" id={"M" + 1} required 
+                                placeholder={"Man " + 1} ref={M1Ref}>Man 1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="DisplayMidColumn">
+                    <div id="CenterCircle" className="CenterCircle" ref={centerRef}>Truth Booth</div>
+                </div>
+
+                <div className="DisplayRightColumn">
+                    <div id="a">a</div>
+                    <div id="b">b</div>
+                    <div id="c">c</div>
+                </div> 
+            </div>
         </React.Fragment>
     );
 
-    // var centerCircleElem = Document.querySelectorAll('./CenterCircle'); 
-    // <Anime targets='.CenterCircle' translateX={500} translateY={100} borderRadius={50} delay={3000} duration={1000} easing='easeInOutQuad' direction='alternate'>
-    //     <nav/>sup
-    // </Anime>
+    // return (
+    //     <React.Fragment>
+    //         <Anime initial={keyframes} ></Anime>
+    //         <div className="DisplayArea">
+    //             <div className="DisplayLeftColumn">
+    //                 <div id="a" ref={aRef}>a</div>
+    //                 <div id="b">b</div>
+    //                 <div id="c">c</div>
+    //             </div>
 
-    // <Anime targets='#tester' translateX={[500, 0]}> // with react-anime
-    //             <div>hi</div>
-    //         </Anime>
-    
-    
+    //             <div className="DisplayMidColumn">
+    //                 <div id="CenterCircle" className="CenterCircle" ref={circleRef}>Truth Booth</div>
+    //             </div>
+
+    //             <div className="DisplayRightColumn">
+    //                 <div id="a">a</div>
+    //                 <div id="b">b</div>
+    //                 <div id="c">c</div>
+    //             </div> 
+    //         </div>
+    //         {/* <div>{centerCircleX}</div> */}
+    //         <div>{aX}</div>
+    //         {/* <div>{delta}</div> */}
+    //     </React.Fragment>
+    // );
+
 //     return (
 //         <React.Fragment>
 //             <script src="anime.min.js"></script>
