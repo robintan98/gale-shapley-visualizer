@@ -49,6 +49,15 @@ function Simulation(props) {
 
     var keyframes = [
         {
+            targets: "#M1-P1",
+            delay: 1000,
+            duration: 500,
+            fontWeight: '900',
+            easing: 'easeInOutSine',
+            backgroundColor: '#E5E5E5'
+        },
+
+        {
             targets: "#M1",
             translateX: centerCoordLeftX - M1CoordX + 10,
             translateY: centerCoordY - M1CoordY - 20,
@@ -89,6 +98,13 @@ function Simulation(props) {
             translateY: 0,
             easing: 'easeInOutSine',
             borderColor: '#FF5F5F',
+        },
+        {
+            targets: "#M1-P1",
+            delay: 1000,
+            duration: 500,
+            opacity: 0,
+            easing: 'easeInOutSine',
         },
 
 
@@ -134,12 +150,12 @@ function Simulation(props) {
             easing: 'easeInOutSine',
             borderColor: '#FF5F5F',
         },
+
         {
             targets: "#M1",
             easing: 'easeInOutSine',
             borderColor: '#C1C1C1',
         },
-
 
         {
             targets: "#M1",
@@ -194,6 +210,18 @@ function Simulation(props) {
                         {/* <div className="PreferenceArea">
                             {preferenceElems}
                         </div> */}
+                        <div className="PreferenceArea">
+                            <div className="LeftPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="M1-P1" required placeholder={"Lady " + 1}>Lady 1
+                                </div>
+                            </div>
+                            <div className="LeftPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="M1-P2" required placeholder={"Lady " + 2}> Lady 2
+                                </div>
+                            </div>
+                        </div>
                         <div className="LeftPerson">
                             <div type="text" class="PersonInput" maxlength="6" id={"M" + 1} required 
                                 placeholder={"Man " + 1} ref={M1Ref}>Man 1</div>
@@ -203,6 +231,18 @@ function Simulation(props) {
                         {/* <div className="PreferenceArea">
                             {preferenceElems}
                         </div> */}
+                        <div className="PreferenceArea">
+                            <div className="LeftPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="M2-P1" required placeholder={"Lady " + 1}> Lady 1
+                                </div>
+                            </div>
+                            <div className="LeftPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="M2-P2" required placeholder={"Lady " + 2}> Lady 2
+                                </div>
+                            </div>
+                        </div>
                         <div className="LeftPerson">
                             <div type="text" class="PersonInput" maxlength="6" id={"M" + 2} required 
                                 placeholder={"Man " + 2} ref={M2Ref}>Man 2</div>
@@ -216,21 +256,45 @@ function Simulation(props) {
 
                 <div className="DisplayRightColumn">
                     <div className="RightEntryArea">
-                        {/* <div className="PreferenceArea">
-                            {preferenceElems}
-                        </div> */}
                         <div className="RightPerson">
                             <div type="text" class="PersonInput" maxlength="6" id={"W" + 1} required 
                                 placeholder={"Lady " + 1} ref={W1Ref}>Lady 1</div>
                         </div>
-                    </div>
-                    <div className="RightEntryArea">
                         {/* <div className="PreferenceArea">
                             {preferenceElems}
                         </div> */}
+                        <div className="PreferenceArea">
+                            <div className="RightPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="W1-P1" required placeholder={"Man " + 1}> Man 1
+                                </div>
+                            </div>
+                            <div className="RightPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="W1-P2" required placeholder={"Man " + 2}> Man 2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="RightEntryArea">
                         <div className="RightPerson">
                             <div type="text" class="PersonInput" maxlength="6" id={"W" + 2} required 
                                 placeholder={"Lady " + 2} ref={W2Ref}>Lady 2</div>
+                        </div>
+                        {/* <div className="PreferenceArea">
+                            {preferenceElems}
+                        </div> */}
+                        <div className="PreferenceArea">
+                            <div className="RightPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="W2-P1" required placeholder={"Man " + 1}> Man 1
+                                </div>
+                            </div>
+                            <div className="RightPreference">
+                                <div type="text" class="PreferenceInput"
+                                    maxlength="6" id="W2-P2" required placeholder={"Man " + 2}> Man 2
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div> 
