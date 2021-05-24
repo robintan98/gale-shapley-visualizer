@@ -12,7 +12,7 @@
 
 .DisplayMidColumn {
     flex: none;
-    width: 10%;
+    width: 12%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,13 +27,14 @@
 .CenterCircle {
     vertical-align: middle;
     border-radius: 10px;
-    border: 1px solid #3b3b3b;
+    border: 1px solid #a7a7a7;
     height: 100px;
     width: 200px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .LeftEntryArea {
@@ -83,6 +84,7 @@
     border-radius: 5px;
     border: 1px solid #C1C1C1;
     width: 50px;
+    /* height: 20px; */
 }
 
 .PreferenceInput {

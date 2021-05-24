@@ -6,7 +6,7 @@ import '../css/Options.css';
 function Options() {
     const [numPeople, setNumPeople] = useState(2);
     const [inputState, setInputState] = useState(new Map()); // global state for all input data
-    const [showSim, setShowSim] = useState(true); // should be default false
+    const [showSim, setShowSim] = useState(false); // should be default false
 
     const condUpdate = (candValue) => {
         return (candValue == 2 || candValue == 3 || candValue == 4) ? candValue : numPeople;
