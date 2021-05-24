@@ -1,0 +1,37 @@
+.DisplayArea {
+    /* background-color: aliceblue; */
+    margin: 10px 0% 10px 0%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.DisplayLeftColumn {
+    flex: 1 0 auto;
+    /* background-color: red; */
+}
+
+.DisplayMidColumn {
+    flex: none;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+}
+
+.DisplayRightColumn {
+    flex: 1 0 auto;
+    /* background-color: blue; */
+}
+
+.CenterCircle {
+    vertical-align: middle;
+    border-radius: 10px;
+    border: 1px solid #3b3b3b;
+    height: 100px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
