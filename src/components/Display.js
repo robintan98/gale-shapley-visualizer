@@ -113,14 +113,17 @@ function Display(props) {
     return (
         <React.Fragment>
             <form id="inputForm" onReset={e => handleReset(e)}>
+                <div className="LabelArea">
+                    <div className="LabelEndColumn">Proposers</div>
+                    <div className="LabelMidColumn"></div>
+                    <div className="LabelEndColumn">Recipients</div>
+                </div>
                 <div className="DisplayArea">
                     <div className="DisplayLeftColumn">
-                        Men (Proposers)
                         {leftElems}
                     </div>
                     <div className="DisplayMidColumn"></div>
                     <div className="DisplayRightColumn">
-                        Women (Recipients)
                         {rightElems}
                     </div>
                 </div>

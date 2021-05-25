@@ -4,11 +4,11 @@ import '../css/Header.css';
 function Header() {
   return (
     <React.Fragment>
-        <div className="Title">
-            Gale Shapley Simulator
-        </div>
-        <div className="SubTitle">
-            A stable matching algorithm visualized for the human eye
+        <h1><div className="Title">
+            Gale Shapley Visualizer
+        </div></h1>
+        <div className="Subtitle">
+            A stable matching algorithm animated for the human eye
         </div>
     </React.Fragment>
   );

@@ -1,6 +1,28 @@
-.NumPeopleForm {
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
+
+.OptionsArea {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.ColumnArea {
+    flex: 1;
+    font-family: 'Assistant', sans-serif;
+}
+
+.NumPeopleButton {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #C1C1C1;
     width: 100px;
+    margin-left: 20px;
+}
+
+.AboutButton {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #C1C1C1;
+    width: 100px;
+    margin-right: 25%;
 }

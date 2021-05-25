@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
+
+.LabelArea {
+    /* background-color: aliceblue; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 15% 0 15%;
+    /* padding-right: 10%; */
+}
+
+.LabelEndColumn {
+    flex: 1 0 auto;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.2em;
+}
+
+.LabelMidColumn {
+    content: "";
+    width: 12%;
+    /* background-color: red; */
+}
+
 .DisplayArea {
     /* background-color: aliceblue; */
     margin: 10px 0% 10px 0%;
