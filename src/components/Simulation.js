@@ -126,9 +126,9 @@ function Simulation(props) {
             case 'Move In':
                 timeline.push(
                 {
-                    targets: "#" + keyframe.man,
-                    translateX: centerCoordLeftX - idToCoordX[keyframe.man] + 10,
-                    translateY: centerCoordY - idToCoordY[keyframe.man] - 20,
+                    targets: "#" + keyframe.manId,
+                    translateX: centerCoordLeftX - idToCoordX[keyframe.manId] + 10,
+                    translateY: centerCoordY - idToCoordY[keyframe.manId] - 20,
                     delay: 1000,
                     duration: 1000,
                     easing: 'easeInOutSine',
@@ -136,38 +136,56 @@ function Simulation(props) {
 
                 timeline.push(
                 {
-                    targets: "#" + keyframe.woman,
-                    translateX: centerCoordRightX - idToCoordX[keyframe.woman] - 10,
-                    translateY: centerCoordY - idToCoordY[keyframe.woman] - 20,
+                    targets: "#" + keyframe.womanId,
+                    translateX: centerCoordRightX - idToCoordX[keyframe.womanId] - 10,
+                    translateY: centerCoordY - idToCoordY[keyframe.womanId] - 20,
                     duration: 1000,
                     duration: 1000,
                     easing: 'easeInOutSine',
                 })
                 break;
             case 'Move Out':
-                timeline.push(
+                if (keyframe.color == "none") {
+                    timeline.push(
                     {
-                        targets: "#" + keyframe.woman,
+                        targets: "#" + keyframe.womanId,
+                        translateX: 0,
+                        translateY: 0,
+                        easing: 'easeInOutSine',
+                    })
+    
+                    timeline.push(
+                    {
+                        targets: "#" + keyframe.manId,
+                        translateX: 0,
+                        translateY: 0,
+                        easing: 'easeInOutSine',
+                    })
+                } else {
+                    timeline.push(
+                    {
+                        targets: "#" + keyframe.womanId,
                         translateX: 0,
                         translateY: 0,
                         easing: 'easeInOutSine',
                         borderColor: keyframe.color,
-                })
+                    })
 
-                timeline.push(
-                {
-                    targets: "#" + keyframe.man,
-                    translateX: 0,
-                    translateY: 0,
-                    easing: 'easeInOutSine',
-                    borderColor: keyframe.color,
-                })
+                    timeline.push(
+                    {
+                        targets: "#" + keyframe.manId,
+                        translateX: 0,
+                        translateY: 0,
+                        easing: 'easeInOutSine',
+                        borderColor: keyframe.color,
+                    })
+                }
                 break;
             case 'Flash Center':
                 timeline.push(
                 {
                     targets: "#Center",
-                    backgroundColor: '#80F7A8',
+                    backgroundColor: keyframe.color,
                     delay: 1000,
                     duration: 500,
                     easing: 'easeInOutSine',
@@ -205,7 +223,7 @@ function Simulation(props) {
             case 'Free Person':
                 timeline.push(
                 {
-                    targets: "#M1",
+                    targets: "#" + keyframe.id,
                     easing: 'easeInOutSine',
                     borderColor: '#C1C1C1',
                 })
@@ -223,7 +241,7 @@ function Simulation(props) {
             leftPreferences.push(
                 <div className="LeftPreference">
                     <div type="text" class="PreferenceInput" maxlength="6" id={"M" + i + "-P" + j}>
-                        Lady {i} 
+                        {props.inputState["M" + i + "-P" + j]}
                     </div>
                 </div>
             );
@@ -231,7 +249,7 @@ function Simulation(props) {
             rightPreferences.push(
                 <div className="RightPreference">
                     <div type="text" class="PreferenceInput" maxlength="6" id={"W" + i + "-P" + j}>
-                        Man {i}
+                        {props.inputState["W" + i + "-P" + j]}
                     </div>
                 </div>
             );
@@ -244,7 +262,7 @@ function Simulation(props) {
                 </div>
                 <div className="LeftPerson">
                     <div type="text" class="PersonInput" maxlength="6" id={"M" + i} ref={idToRef["M" + i]}>
-                        Man {i}
+                        {props.inputState["M" + i]}
                     </div>
                 </div>
             </div>
@@ -254,7 +272,7 @@ function Simulation(props) {
             <div className="RightEntryArea">
                 <div className="RightPerson">
                     <div type="text" class="PersonInput" maxlength="6" id={"W" + i} ref={idToRef["W" + i]}>
-                        Lady {i}
+                        {props.inputState["W" + i]}
                     </div>
                 </div>
                 <div className="PreferenceArea">
@@ -274,7 +292,7 @@ function Simulation(props) {
                 </div>
 
                 <div className="DisplayMidColumn">
-                    <div id="Center" className="CenterCircle" ref={centerRef}></div>
+                    <div id="Center" className="Center" ref={centerRef}></div>
                 </div>
 
                 <div className="DisplayRightColumn">
