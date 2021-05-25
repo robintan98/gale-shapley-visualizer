@@ -15,28 +15,23 @@
 .PreferenceArea {
     display: flex;
     flex-direction: row;
-    /* background-color: cyan; */
 }
 
 .LeftPerson {
-    /* background-color: yellow; */
     padding-top: 8%;
     padding-right: 25%;
 }
 
 .LeftPreference {
-    /* background-color: black; */
     margin-right: 5px;
 }
 
 .RightPerson {
-    /* background-color: yellow; */
     padding-top: 8%;
     padding-left: 25%;
 }
 
 .RightPreference {
-    /* background-color: black; */
     margin-left: 5px;
 }
 

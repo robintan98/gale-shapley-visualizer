@@ -127,8 +127,15 @@ function Display(props) {
                         {rightElems}
                     </div>
                 </div>
-                <input type="reset" />
-                <button type="submit" class="SubmitButton" onClick={handleSubmit}>Submit</button>
+                <div className="BottomArea">
+                    <div className="LeftBottomArea">
+                        <input type="reset" className="DemoButton" value="Demo"/>
+                    </div>
+                    <div className="RightBottomArea">
+                        <input type="reset" className="ResetButton"/>
+                        <button type="submit" className="SubmitButton" onClick={handleSubmit}>Visualize</button>
+                    </div>
+                </div>
             </form>
             {showWarning && <h2>input wrong!</h2>}
         </React.Fragment>

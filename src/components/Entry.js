@@ -42,7 +42,7 @@ function Entry(props) {
                     </div>
                     <div className="LeftPerson">
                         <input type="text" class="PersonInput" maxlength="6" id={"M" + props.count} required 
-                            placeholder={"Man " + props.count} onInput={e => handleChange(e)}></input>
+                            placeholder={"Prop " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                 </div>
             </React.Fragment>
@@ -53,7 +53,7 @@ function Entry(props) {
                 <div className="RightEntryArea">
                     <div className="RightPerson">
                         <input type="text" class="PersonInput" maxlength="6" id={"W" + props.count} required 
-                            placeholder={"Lady " + props.count} onInput={e => handleChange(e)}></input>
+                            placeholder={"Recip " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                     <div className="PreferenceArea">
                         {preferenceElems}

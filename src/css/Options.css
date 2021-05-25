@@ -3,26 +3,40 @@
 .OptionsArea {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin: 15px 17% 0 17%;
 }
 
-.ColumnArea {
+.MidColumnArea {
     flex: 1;
     font-family: 'Assistant', sans-serif;
 }
 
-.NumPeopleButton {
+.EndColumnArea {
+    flex: 1;
+    font-family: 'Assistant', sans-serif;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.NumPeopleInput {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #C1C1C1;
+    border: 1px solid #DADADA;
     width: 100px;
     margin-left: 20px;
 }
 
 .AboutButton {
-    padding: 10px;
     border-radius: 5px;
-    border: 1px solid #C1C1C1;
-    width: 100px;
-    margin-right: 25%;
+    border: 1px solid #DADADA;
+    background-color: #f0f0f0;
+    width: 80px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+}
+
+.AboutButton:hover {
+    transition-duration: 0.4s;
+    background-color: #D1D1D1;
 }

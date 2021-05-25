@@ -1,28 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
 
 .LabelArea {
-    /* background-color: aliceblue; */
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     padding: 0 15% 0 15%;
-    /* padding-right: 10%; */
 }
 
 .LabelEndColumn {
     flex: 1 0 auto;
     font-family: 'Assistant', sans-serif;
     font-size: 1.2em;
+    font-weight: 600;
+    justify-content: flex-end;
 }
 
 .LabelMidColumn {
     content: "";
-    width: 12%;
-    /* background-color: red; */
+    width: 11%;
 }
 
 .DisplayArea {
-    /* background-color: aliceblue; */
     margin: 10px 0% 10px 0%;
     display: flex;
     justify-content: space-between;
@@ -30,29 +28,81 @@
 
 .DisplayLeftColumn {
     flex: 1 0 auto;
-    /* background-color: red; */
 }
 
 .DisplayMidColumn {
     flex: none;
     width: 10%;
-    /* background-color: green; */
 }
 
 .DisplayRightColumn {
     flex: 1 0 auto;
-    /* background-color: blue; */
+}
+
+.BottomArea {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.LeftBottomArea {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 17%;
+}
+
+.RightBottomArea {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 17%;
 }
 
 .SubmitButton {
-  width: 200px;
-  height: 36px;
-  border-radius: 18px;
-  background-color: #1c89ff;
-  border: solid 1px transparent;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 300;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
+    border-radius: 20px;
+    border: 1px solid #dadada;
+    background-color: #3d98ff;
+    width: 180px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+}
+
+.SubmitButton:hover {
+    transition-duration: 0.4s;
+    background-color: #1c89ff;
+}
+
+.ResetButton {
+    border-radius: 20px;
+    border: 1px solid #dadada;
+    background-color: #f0f0f0;
+    width: 100px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.ResetButton:hover {
+    transition-duration: 0.4s;
+    background-color: #d1d1d1;
+}
+
+.DemoButton {
+    border-radius: 20px;
+    border: 1px solid #dadada;
+    background-color: #3d98ff;
+    width: 100px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    margin-right: 10px;
+    color: white;
+}
+
+.DemoButton:hover {
+    transition-duration: 0.4s;
+    background-color: #1c89ff;
 }

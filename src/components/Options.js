@@ -9,14 +9,14 @@ function Options(props) {
     return (
         <React.Fragment>
             <div className="OptionsArea">
-                <div className="ColumnArea"></div>
-                <div className="ColumnArea">
+                <div className="EndColumnArea"></div>
+                <div className="MidColumnArea">
                     Number of Matches:
-                    <input type="number" className="NumPeopleButton" placeholder="2-4 matches"
+                    <input type="number" className="NumPeopleInput" placeholder="2-4 matches"
                             min="2" max="4" required onChange={e => props.setNumPeople(condUpdate(props.numPeople, e.target.value))}>
                     </input>
                 </div>
-                <div class="ColumnArea">
+                <div class="EndColumnArea">
                     <button class="AboutButton">About</button>
                 </div>
             </div>
