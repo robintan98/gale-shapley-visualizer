@@ -17,8 +17,7 @@ function Display(props) {
     }
 
     const handleSubmit = () => {
-        console.log(props.inputState)
-        if (!validateData()) {
+        if (!validateData(props.numPeople, props.inputState)) {
             setShowWarning(true);
         } else {
             setShowWarning(false);
@@ -26,8 +25,8 @@ function Display(props) {
         }
     }
 
-    const handleReset = () => {
-        for (var entry in props.inputState) delete props.inputState[entry];
+    const handleReset = (e) => {
+        props.setInputState({});
     }
 
     const shareElements = (set1, set2) => {
@@ -49,25 +48,25 @@ function Display(props) {
         return JSON.stringify(array1) === JSON.stringify(array2);
     }
 
-    const validateData = () => {
+    const validateData = (numPeople, data) => {
         // Check if inputs are well-formed
         var prefixes = ["M", "W"];
         for (var i = 0; i < 2; i++) {
-            for (var j = 1; j <= props.numPeople; j++) {
-                if (!((prefixes[i] + j) in props.inputState)) {
+            for (var j = 1; j <= numPeople; j++) {
+                if (!((prefixes[i] + j) in data)) {
                     return false;
                 }
 
-                if (props.inputState[prefixes[i] + j].length == 0) {
+                if (data[prefixes[i] + j].length == 0) {
                     return false;
                 }
 
-                for (var k = 1; k <= props.numPeople; k++) {
-                    if (!((prefixes[i] + j + "-P" + k) in props.inputState)) {
+                for (var k = 1; k <= numPeople; k++) {
+                    if (!((prefixes[i] + j + "-P" + k) in data)) {
                         return false;
                     }
 
-                    if (props.inputState[prefixes[i] + j + "-P" + k].length == 0) {
+                    if (data[prefixes[i] + j + "-P" + k].length == 0) {
                         return false;
                     }
                 }
@@ -113,7 +112,7 @@ function Display(props) {
 
     return (
         <React.Fragment>
-            <form>
+            <form id="inputForm" onReset={e => handleReset(e)}>
                 <div className="DisplayArea">
                     <div className="DisplayLeftColumn">
                         Men (Proposers)
@@ -125,11 +124,10 @@ function Display(props) {
                         {rightElems}
                     </div>
                 </div>
-                <input type="reset" onClick={handleReset}/>
+                <input type="reset" />
+                <button type="submit" class="SubmitButton" onClick={handleSubmit}>Submit</button>
             </form>
-            <button class="SubmitButton" onClick={handleSubmit}>Submit</button>
             {showWarning && <h2>input wrong!</h2>}
-
         </React.Fragment>
     );
 }

@@ -10,7 +10,7 @@ function Entry(props) {
             preferenceElems.push(<div className="LeftPreference">
                                      <input type="text" class="PreferenceInput"
                                          maxlength="6" id={inputId} required placeholder={"Pref " + i}
-                                         onChange={e => handleChange(e)}>
+                                         onInput={e => handleChange(e)}>
                                      </input>
                                  </div>);
         } else {
@@ -18,7 +18,7 @@ function Entry(props) {
             preferenceElems.push(<div className="RightPreference">
                                      <input type="text" class="PreferenceInput" 
                                          maxlength="6" id={inputId} required placeholder={"Pref " + i}
-                                         onChange={e => handleChange(e)}>
+                                         onInput={e => handleChange(e)}>
                                      </input>
                                  </div>);
         }
@@ -42,7 +42,7 @@ function Entry(props) {
                     </div>
                     <div className="LeftPerson">
                         <input type="text" class="PersonInput" maxlength="6" id={"M" + props.count} required 
-                            placeholder={"Man " + props.count} onChange={e => handleChange(e)}></input>
+                            placeholder={"Man " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                 </div>
             </React.Fragment>
@@ -53,7 +53,7 @@ function Entry(props) {
                 <div className="RightEntryArea">
                     <div className="RightPerson">
                         <input type="text" class="PersonInput" maxlength="6" id={"W" + props.count} required 
-                            placeholder={"Lady " + props.count} onChange={e => handleChange(e)}></input>
+                            placeholder={"Lady " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                     <div className="PreferenceArea">
                         {preferenceElems}
