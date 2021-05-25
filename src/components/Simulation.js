@@ -307,10 +307,25 @@ function Simulation(props) {
         );
     }
 
+    const [control, setControl] = useState(null); //controller state
+
+    const [meta, setMeta] = useState({
+        //meta state of the player
+        control: control,
+        progress: 100,
+        currentTime: 0,
+        duration: 0
+    });
 
     return (
         <React.Fragment>
-            {toggleAnime && <Anime initial={timeline}></Anime>}
+            {toggleAnime && <Anime initial={timeline} control={control} setMeta={setMeta}
+                                   animeConfig={{
+                                        autoplay: true,
+                                        duration: 1500,
+                                        easing: "easeInOutSine"
+                                        }}
+            ></Anime>}
             <div className="DisplayArea">
                 <div className="DisplayLeftColumn">
                     {leftElems}
@@ -324,9 +339,55 @@ function Simulation(props) {
                     {rightElems}
                 </div> 
             </div>
+            
+            <div
+                className="button"
+                onClick={() => {
+                setControl("play");
+                }}
+            >
+                Play
+            </div>
+            <div
+                className="button"
+                onClick={() => {
+                setControl("pause");
+                }}
+            >
+                Pause
+            </div>
+            <div
+                className="button"
+                onClick={() => {
+                setControl("restart");
+                }}
+            >
+                Restart
+            </div>
+            <div
+                className="button"
+                onClick={() => {
+                setControl(["seek", 100]);
+                }}
+            >
+                Skip to End
+            </div>
+            <input
+                type="range"
+                min="1"
+                max="100"
+                value={meta.progress || 0}
+                className="slider"
+                id="myRange"
+                onChange={e => setControl(["seek", e.currentTarget.value])}>
+            </input>
+            <button onClick={() => props.setShowSim(false)}>
+                go back
+            </button>
         </React.Fragment>
     );
 }
 
 
 export default Simulation;
+

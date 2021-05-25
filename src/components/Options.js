@@ -164,7 +164,6 @@ function Options() {
                 } else {
                     // match unsuccessful: currentMan rejected
 
-                    console.log("hi")
                     // Push "Flash Center"
                     simInstructions.push(
                         {
@@ -214,7 +213,9 @@ function Options() {
                 }
                 {!showSim && <p>Number of matches: {numPeople} </p>}
                 {!showSim && <Display numPeople={numPeople} inputState={inputState} setInputState={setInputState} setShowSim={setShowSim}></Display>}
-                {showSim && <Simulation numPeople={numPeople} inputState={inputState} simInstructions={simInstructions}></Simulation>}
+                {showSim && <Simulation numPeople={numPeople} inputState={inputState} 
+                                        simInstructions={simInstructions} setShowSim={setShowSim}>
+                            </Simulation>}
             </div>
         </React.Fragment>
     );

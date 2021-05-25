@@ -15,13 +15,19 @@ function Display(props) {
     for (var i = 1; i <= props.numPeople; i++) {
         rightElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={false} setInputState={props.setInputState}/>);
     }
+
     const handleSubmit = () => {
+        console.log(props.inputState)
         if (!validateData()) {
             setShowWarning(true);
         } else {
             setShowWarning(false);
             props.setShowSim(true);
         }
+    }
+
+    const handleReset = () => {
+        for (var entry in props.inputState) delete props.inputState[entry];
     }
 
     const shareElements = (set1, set2) => {
@@ -107,19 +113,23 @@ function Display(props) {
 
     return (
         <React.Fragment>
-            <div className="DisplayArea">
-                <div className="DisplayLeftColumn">
-                    Men (Proposers)
-                    {leftElems}
+            <form>
+                <div className="DisplayArea">
+                    <div className="DisplayLeftColumn">
+                        Men (Proposers)
+                        {leftElems}
+                    </div>
+                    <div className="DisplayMidColumn"></div>
+                    <div className="DisplayRightColumn">
+                        Women (Recipients)
+                        {rightElems}
+                    </div>
                 </div>
-                <div className="DisplayMidColumn"></div>
-                <div className="DisplayRightColumn">
-                    Women (Recipients)
-                    {rightElems}
-                </div>
-            </div>
+                <input type="reset" onClick={handleReset}/>
+            </form>
             <button class="SubmitButton" onClick={handleSubmit}>Submit</button>
             {showWarning && <h2>input wrong!</h2>}
+
         </React.Fragment>
     );
 }
