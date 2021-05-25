@@ -26,7 +26,27 @@ function Display(props) {
     }
 
     const handleReset = (e) => {
+        setShowWarning(false);
         props.setInputState({});
+    }
+
+    const handleDemo = (e) => {
+        var demoInputData = {
+            'M1': 'Aaron',
+            'M2': 'Bryan',
+            'W1': 'Chloe',
+            'W2': 'Dana',
+            'M1-P1': 'Chloe',
+            'M1-P2': 'Dana',
+            'M2-P1': 'Chloe',
+            'M2-P2': 'Dana',
+            'W1-P1': 'Bryan',
+            'W1-P2': 'Aaron',
+            'W2-P1': 'Aaron',
+            'W2-P2': 'Bryan',
+        };
+        props.setInputState(demoInputData);
+        props.setShowSim(true);
     }
 
     const shareElements = (set1, set2) => {
@@ -129,7 +149,7 @@ function Display(props) {
                 </div>
                 <div className="BottomArea">
                     <div className="LeftBottomArea">
-                        <input type="reset" className="DemoButton" value="Demo"/>
+                        <input type="reset" className="DemoButton" onClick={handleDemo} value="Demo"/>
                     </div>
                     <div className="RightBottomArea">
                         <input type="reset" className="ResetButton"/>
@@ -137,7 +157,24 @@ function Display(props) {
                     </div>
                 </div>
             </form>
-            {showWarning && <h2>input wrong!</h2>}
+            {showWarning &&
+                <div className="WarningArea">
+                    <div className="WarningPaper">
+                        <div className="WarningPaperTitle">
+                            Input Error
+                        </div>
+                        <hr className="WarningPaperLine"></hr>
+                        <div className="WarningPaperBody">
+                            Check that the following are correct:
+                            <ul>
+                                <li>Proposer and Recipient names are <b>unique</b> and distinct from each other</li>
+                                <li>A Proposer's preferences are the set of Recipients, and vice versa</li>
+                                <li>All names must be valid and non-empty</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
         </React.Fragment>
     );
 }

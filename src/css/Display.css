@@ -60,7 +60,7 @@
 
 .SubmitButton {
     border-radius: 20px;
-    border: 1px solid #dadada;
+    border: none;
     background-color: #3d98ff;
     width: 180px;
     height: 38px;
@@ -92,7 +92,7 @@
 
 .DemoButton {
     border-radius: 20px;
-    border: 1px solid #dadada;
+    border: none;
     background-color: #3d98ff;
     width: 100px;
     height: 38px;
@@ -105,4 +105,33 @@
 .DemoButton:hover {
     transition-duration: 0.4s;
     background-color: #1c89ff;
+}
+
+.WarningArea {
+    margin: 25px 17% 0 17%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Assistant', sans-serif;
+}
+
+.WarningPaper {
+    width: 60%;
+    background-color: rgb(255, 219, 219);
+    border-radius: 8px;
+    padding: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.WarningPaperTitle {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.WarningPaperLine {
+    border: 1px dashed grey;
+}
+
+.WarningPaperBody {
+    font-size: 1em;
 }
