@@ -228,6 +228,31 @@ function Simulation(props) {
                     borderColor: '#C1C1C1',
                 })
                 break;
+            case 'Flush Preferences':
+                timeline.push({delay: 1000})
+
+                for (var i = 1; i <= props.numPeople; i++) {
+                    for (var j = 1; j <= props.numPeople; j++) {
+                        timeline.push(
+                        {
+                            targets: "#M" + i + "-P" + j,
+                            duration: 100,
+                            opacity: 0,
+                            easing: 'easeInOutSine',
+                        })
+                    }
+
+                    for (var j = 1; j <= props.numPeople; j++) {
+                        timeline.push(
+                        {
+                            targets: "#W" + i + "-P" + j,
+                            duration: 100,
+                            opacity: 0,
+                            easing: 'easeInOutSine',
+                        })
+                    }
+                }
+                break;
             default:
           }
     }

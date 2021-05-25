@@ -118,7 +118,6 @@ function Display(props) {
                     {rightElems}
                 </div>
             </div>
-            {JSON.stringify(props.inputState)}
             <button class="SubmitButton" onClick={handleSubmit}>Submit</button>
             {showWarning && <h2>input wrong!</h2>}
         </React.Fragment>
