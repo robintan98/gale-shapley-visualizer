@@ -27,10 +27,10 @@ function Body() {
 
         // A convenient dictionary for colors
         var color = {}
-        color[inputState["W" + 1]] = '#FF9100'
-        color[inputState["W" + 2]] = '#2B00FF'
-        color[inputState["W" + 3]] = '#00FF3C'
-        color[inputState["W" + 4]] = '#FF0000'
+        color[inputState["W" + 1]] = '#FF3939' // red
+        color[inputState["W" + 2]] = '#3940FF' // blue
+        color[inputState["W" + 3]] = '#3ABF50' // green
+        color[inputState["W" + 4]] = '#F2B81A' // orange
 
         // Maps from Person to ID
         var reversePersonIndex = {}
@@ -206,8 +206,9 @@ function Body() {
                 {!showSim &&
                     <Options numPeople={numPeople} setNumPeople={setNumPeople}/>
                 }
-                {!showSim && <Display numPeople={numPeople} inputState={inputState} setInputState={setInputState} setShowSim={setShowSim}></Display>}
-                {showSim && <Simulation numPeople={numPeople} inputState={inputState} 
+                {!showSim && <Display numPeople={numPeople} inputState={inputState} setInputState={setInputState}
+                                      setShowSim={setShowSim} setNumPeople={setNumPeople}></Display>}
+                {showSim && <Simulation numPeople={numPeople} inputState={inputState} setInputState={setInputState} 
                                         simInstructions={simInstructions} setShowSim={setShowSim}>
                             </Simulation>}
             </div>

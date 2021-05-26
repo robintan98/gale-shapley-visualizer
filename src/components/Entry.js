@@ -8,7 +8,7 @@ function Entry(props) {
         if (props.isLeft) {
             var inputId = "M" + props.count + "-P" + i;
             preferenceElems.push(<div className="LeftPreference">
-                                     <input type="text" class="PreferenceInput"
+                                     <input type="text" className="PreferenceInput"
                                          maxlength="6" id={inputId} required placeholder={"Pref " + i}
                                          onInput={e => handleChange(e)}>
                                      </input>

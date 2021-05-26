@@ -1,13 +1,34 @@
-.DisplayArea {
-    /* background-color: aliceblue; */
-    margin: 10px 0% 10px 0%;
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
+
+.LabelArea {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 15% 0 15%;
+}
+
+.LabelEndColumn {
+    flex: 1 0 auto;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    justify-content: flex-end;
+}
+
+.LabelMidColumn {
+    content: "";
+    width: 11%;
+}
+
+.DisplayArea {
+    margin: 10px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Assistant', sans-serif;
 }
 
 .DisplayLeftColumn {
     flex: 1 0 auto;
-    /* background-color: red; */
 }
 
 .DisplayMidColumn {
@@ -16,21 +37,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: green; */
 }
 
 .DisplayRightColumn {
     flex: 1 0 auto;
-    /* background-color: blue; */
 }
 
 .Center {
-    vertical-align: middle;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #a7a7a7;
     height: 100px;
     width: 200px;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,43 +71,160 @@
 .PreferenceArea {
     display: flex;
     flex-direction: row;
-    /* background-color: cyan; */
 }
 
 .LeftPerson {
-    /* background-color: yellow; */
     padding-top: 8%;
     padding-right: 25%;
 }
 
 .LeftPreference {
-    /* background-color: black; */
     margin-left: 5px;
 }
 
 .RightPerson {
-    /* background-color: yellow; */
     padding-top: 8%;
     padding-left: 25%;
 }
 
 .RightPreference {
-    /* background-color: black; */
     margin-left: 5px;
 }
 
-.PersonInput {
+.PersonSimInput {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #888888;
+    width: 50px;
+}
+
+.PreferenceSimInput {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #C1C1C1;
     width: 50px;
-    /* height: 20px; */
 }
 
-.PreferenceInput {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid red;
-    width: 50px;
+.BottomSimArea {
+    display: flex;
+    margin: 0 17% 0 17%;
+    justify-content: space-between;
+    margin-top: 50px;
 }
 
+.BottomLeftSimArea {
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.PlayButton {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #59ca42;
+    width: 80px;
+    height: 25px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+    
+}
+
+.PlayButton:hover {
+    transition-duration: 0.4s;
+    background-color: #4baa38;
+}
+
+.PauseButton {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #428dca;
+    width: 80px;
+    height: 25px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+    
+}
+
+.PauseButton:hover {
+    transition-duration: 0.4s;
+    background-color: #3866aa;
+}
+
+.RestartButton {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ec6d6d;
+    width: 80px;
+    height: 25px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+    margin-left: 10px;
+}
+
+.RestartButton:hover {
+    transition-duration: 0.4s;
+    background-color: #da5757;
+}
+
+.SkipButton {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: #e7c554;
+    width: 120px;
+    height: 25px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+    margin-left: 10px;
+    
+}
+
+.SkipButton:hover {
+    transition-duration: 0.4s;
+    background-color: #ccae4d;
+}
+
+
+.BottomRightSimArea {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.GoBackButton {
+    border-radius: 20px;
+    border: none;
+    background-color: #ff5757;
+    width: 100px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: white;
+}
+
+.GoBackButton:hover {
+    transition-duration: 0.4s;
+    background-color: #fc3232;
+}
+
+.SliderArea {
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px 17% 0 17%;
+}
+
+.SliderNote {
+    margin-left: 20px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+}

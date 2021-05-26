@@ -140,7 +140,6 @@ function Simulation(props) {
                     translateX: centerCoordRightX - idToCoordX[keyframe.womanId] - 10,
                     translateY: centerCoordY - idToCoordY[keyframe.womanId] - 20,
                     duration: 1000,
-                    duration: 1000,
                     easing: 'easeInOutSine',
                 })
                 break;
@@ -151,6 +150,7 @@ function Simulation(props) {
                         targets: "#" + keyframe.womanId,
                         translateX: 0,
                         translateY: 0,
+                        duration: 1000,
                         easing: 'easeInOutSine',
                     })
     
@@ -159,6 +159,7 @@ function Simulation(props) {
                         targets: "#" + keyframe.manId,
                         translateX: 0,
                         translateY: 0,
+                        duration: 1000,
                         easing: 'easeInOutSine',
                     })
                 } else {
@@ -167,6 +168,7 @@ function Simulation(props) {
                         targets: "#" + keyframe.womanId,
                         translateX: 0,
                         translateY: 0,
+                        duration: 1000,
                         easing: 'easeInOutSine',
                         borderColor: keyframe.color,
                     })
@@ -176,6 +178,7 @@ function Simulation(props) {
                         targets: "#" + keyframe.manId,
                         translateX: 0,
                         translateY: 0,
+                        duration: 1000,
                         easing: 'easeInOutSine',
                         borderColor: keyframe.color,
                     })
@@ -225,7 +228,9 @@ function Simulation(props) {
                 {
                     targets: "#" + keyframe.id,
                     easing: 'easeInOutSine',
-                    borderColor: '#C1C1C1',
+                    delay: 100,
+                    duration: 500,
+                    borderColor: '#888888',
                 })
                 break;
             case 'Flush Preferences':
@@ -265,7 +270,7 @@ function Simulation(props) {
         for (var j = 1; j <= props.numPeople; j++) {
             leftPreferences.push(
                 <div className="LeftPreference">
-                    <div type="text" class="PreferenceInput" maxlength="6" id={"M" + i + "-P" + j}>
+                    <div type="text" class="PreferenceSimInput" maxlength="6" id={"M" + i + "-P" + j}>
                         {props.inputState["M" + i + "-P" + j]}
                     </div>
                 </div>
@@ -273,7 +278,7 @@ function Simulation(props) {
 
             rightPreferences.push(
                 <div className="RightPreference">
-                    <div type="text" class="PreferenceInput" maxlength="6" id={"W" + i + "-P" + j}>
+                    <div type="text" class="PreferenceSimInput" maxlength="6" id={"W" + i + "-P" + j}>
                         {props.inputState["W" + i + "-P" + j]}
                     </div>
                 </div>
@@ -286,7 +291,7 @@ function Simulation(props) {
                     {leftPreferences}
                 </div>
                 <div className="LeftPerson">
-                    <div type="text" class="PersonInput" maxlength="6" id={"M" + i} ref={idToRef["M" + i]}>
+                    <div type="text" class="PersonSimInput" maxlength="6" id={"M" + i} ref={idToRef["M" + i]}>
                         {props.inputState["M" + i]}
                     </div>
                 </div>
@@ -296,7 +301,7 @@ function Simulation(props) {
         rightElems.push(
             <div className="RightEntryArea">
                 <div className="RightPerson">
-                    <div type="text" class="PersonInput" maxlength="6" id={"W" + i} ref={idToRef["W" + i]}>
+                    <div type="text" class="PersonSimInput" maxlength="6" id={"W" + i} ref={idToRef["W" + i]}>
                         {props.inputState["W" + i]}
                     </div>
                 </div>
@@ -307,15 +312,23 @@ function Simulation(props) {
         );
     }
 
-    const [control, setControl] = useState(null); //controller state
+    const handleGoBack = () => {
+        props.setInputState({})
+        props.setShowSim(false)
+    }
 
+    // controller state
+    const [control, setControl] = useState(null);
+
+    // meta state
     const [meta, setMeta] = useState({
-        //meta state of the player
         control: control,
         progress: 100,
         currentTime: 0,
         duration: 0
     });
+
+    const [showPlay, setShowPlay] = useState(false);
 
     return (
         <React.Fragment>
@@ -326,6 +339,11 @@ function Simulation(props) {
                                         easing: "easeInOutSine"
                                         }}
             ></Anime>}
+            <div className="LabelArea">
+                    <div className="LabelEndColumn">Proposers</div>
+                    <div className="LabelMidColumn"></div>
+                    <div className="LabelEndColumn">Recipients</div>
+                </div>
             <div className="DisplayArea">
                 <div className="DisplayLeftColumn">
                     {leftElems}
@@ -339,51 +357,58 @@ function Simulation(props) {
                     {rightElems}
                 </div> 
             </div>
-            
-            <div
-                className="button"
-                onClick={() => {
-                setControl("play");
-                }}
-            >
-                Play
+
+            <div className="BottomSimArea">
+                <div className="BottomLeftSimArea">
+                    {showPlay &&
+                    <div
+                        className="PlayButton"
+                        onClick={() => {
+                        setControl("play");
+                        setShowPlay(false);
+                        }}>Play</div>
+                    }
+                    {!showPlay &&
+                    <div
+                        className="PauseButton"
+                        onClick={() => {
+                        setControl("pause");
+                        setShowPlay(true);
+                        }}>Pause</div>
+                    }
+
+                    <div
+                        className="RestartButton"
+                        onClick={() => {
+                        setControl("restart");
+                        }}>Restart</div>
+                    <div
+                        className="SkipButton"
+                        onClick={() => {
+                        setControl(["seek", 100]);
+                        setShowPlay(true);
+                        }}>Skip to End</div>
+                </div>
+
+                <div className="BottomRightSimArea">
+                    <button className="GoBackButton" onClick={() => handleGoBack()}>
+                        Go Back
+                    </button>
+                </div>
             </div>
-            <div
-                className="button"
-                onClick={() => {
-                setControl("pause");
-                }}
-            >
-                Pause
+            <div className="SliderArea">
+                <input
+                    type="range"
+                    min="1"
+                    max="100"
+                    value={meta.progress || 0}
+                    className="slider"
+                    onChange={e => setControl(["seek", e.currentTarget.value])}>
+                </input>
+                <div className='SliderNote'>
+                    Pause to Scrub
+                </div>
             </div>
-            <div
-                className="button"
-                onClick={() => {
-                setControl("restart");
-                }}
-            >
-                Restart
-            </div>
-            <div
-                className="button"
-                onClick={() => {
-                setControl(["seek", 100]);
-                }}
-            >
-                Skip to End
-            </div>
-            <input
-                type="range"
-                min="1"
-                max="100"
-                value={meta.progress || 0}
-                className="slider"
-                id="myRange"
-                onChange={e => setControl(["seek", e.currentTarget.value])}>
-            </input>
-            <button onClick={() => props.setShowSim(false)}>
-                go back
-            </button>
         </React.Fragment>
     );
 }

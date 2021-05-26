@@ -46,6 +46,7 @@ function Display(props) {
             'W2-P2': 'Bryan',
         };
         props.setInputState(demoInputData);
+        props.setNumPeople(2);
         props.setShowSim(true);
     }
 
