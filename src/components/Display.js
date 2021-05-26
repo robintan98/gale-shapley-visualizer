@@ -16,7 +16,8 @@ function Display(props) {
         rightElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={false} setInputState={props.setInputState}/>);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         if (!validateData(props.numPeople, props.inputState)) {
             setShowWarning(true);
         } else {
@@ -154,7 +155,7 @@ function Display(props) {
                     </div>
                     <div className="RightBottomArea">
                         <input type="reset" className="ResetButton"/>
-                        <button type="submit" className="SubmitButton" onClick={handleSubmit}>Visualize</button>
+                        <button type="submit" className="SubmitButton" onClick={e => handleSubmit(e)}>Visualize</button>
                     </div>
                 </div>
             </form>

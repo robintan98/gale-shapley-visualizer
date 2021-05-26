@@ -9,7 +9,7 @@ function Entry(props) {
             var inputId = "M" + props.count + "-P" + i;
             preferenceElems.push(<div className="LeftPreference">
                                      <input type="text" className="PreferenceInput"
-                                         maxlength="6" id={inputId} required placeholder={"Pref " + i}
+                                         maxlength="7" id={inputId} required placeholder={"Pref " + i}
                                          onInput={e => handleChange(e)}>
                                      </input>
                                  </div>);
@@ -17,7 +17,7 @@ function Entry(props) {
             var inputId = "W" + props.count + "-P" + i;
             preferenceElems.push(<div className="RightPreference">
                                      <input type="text" class="PreferenceInput" 
-                                         maxlength="6" id={inputId} required placeholder={"Pref " + i}
+                                         maxlength="7" id={inputId} required placeholder={"Pref " + i}
                                          onInput={e => handleChange(e)}>
                                      </input>
                                  </div>);
@@ -41,7 +41,7 @@ function Entry(props) {
                         {preferenceElems}
                     </div>
                     <div className="LeftPerson">
-                        <input type="text" class="PersonInput" maxlength="6" id={"M" + props.count} required 
+                        <input type="text" class="PersonInput" maxlength="7" id={"M" + props.count} required 
                             placeholder={"Prop " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ function Entry(props) {
             <React.Fragment>
                 <div className="RightEntryArea">
                     <div className="RightPerson">
-                        <input type="text" class="PersonInput" maxlength="6" id={"W" + props.count} required 
+                        <input type="text" class="PersonInput" maxlength="7" id={"W" + props.count} required 
                             placeholder={"Recip " + props.count} onInput={e => handleChange(e)}></input>
                     </div>
                     <div className="PreferenceArea">
