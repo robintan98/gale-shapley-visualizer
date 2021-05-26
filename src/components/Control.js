@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/Control.css';
 
 function Control(props) {
@@ -8,50 +8,40 @@ function Control(props) {
         props.setShowSim(false)
     }
 
-    // controller state
-    const [control, setControl] = useState(null);
-
-    // meta state
-    const [meta, setMeta] = useState({
-        control: control,
-        progress: 100,
-        currentTime: 0,
-        duration: 0
-    });
-
-    const [showPlay, setShowPlay] = useState(false);
+    const [isPlay, setIsPlay] = useState(true);
 
     return (
         <React.Fragment>
             <div className="BottomSimArea">
                 <div className="BottomLeftSimArea">
-                    {showPlay &&
+                    {!isPlay && // play button shows => not playing right now
                     <div
                         className="PlayButton"
                         onClick={() => {
-                        setControl("play");
-                        setShowPlay(false);
+                        props.setControl("play");
+                        setIsPlay(true); 
                         }}>Play</div>
                     }
-                    {!showPlay &&
+                    {isPlay && // pause button shows => playing right now
                     <div
                         className="PauseButton"
                         onClick={() => {
-                        setControl("pause");
-                        setShowPlay(true);
+                        props.setControl("pause");
+                        setIsPlay(false);
                         }}>Pause</div>
                     }
 
                     <div
                         className="RestartButton"
                         onClick={() => {
-                        setControl("restart");
+                        props.setControl("restart");
+                        setIsPlay(true);
                         }}>Restart</div>
                     <div
                         className="SkipButton"
                         onClick={() => {
-                        setControl(["seek", 100]);
-                        setShowPlay(true);
+                        props.setControl(["seek", 100]);
+                        setIsPlay(false);
                         }}>Skip to End</div>
                 </div>
 
@@ -66,12 +56,14 @@ function Control(props) {
                     type="range"
                     min="1"
                     max="100"
-                    value={meta.progress || 0}
+                    value={props.meta.progress || 0}
                     className="slider"
-                    onChange={e => setControl(["seek", e.currentTarget.value])}>
+                    onChange={e => props.setControl(["seek", e.currentTarget.value])}>
                 </input>
                 <div className='SliderNote'>
                     Pause to Scrub
+                    <br />
+                    and Restart
                 </div>
             </div>
         </React.Fragment>

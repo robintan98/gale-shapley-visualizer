@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import Control from './Control.js';
 import '../css/Simulation.css';
 import ReactAnime from 'react-animejs'
 
@@ -202,6 +203,24 @@ function Simulation(props) {
                     easing: 'easeInOutSine',
                 })
                 break;
+            case 'Color Preference':
+                timeline.push(
+                {
+                    targets: "#" + keyframe.id,
+                    duration: 500,
+                    borderColor: keyframe.color,
+                    easing: 'easeInOutSine',
+                })
+                break;
+            case 'Discolor Preference':
+                timeline.push(
+                {
+                    targets: "#" + keyframe.id,
+                    duration: 500,
+                    borderColor: '#C1C1C1',
+                    easing: 'easeInOutSine',
+                })
+                break;
             case 'Free Preference':
                 timeline.push(
                 {
@@ -257,6 +276,14 @@ function Simulation(props) {
                         })
                     }
                 }
+
+                timeline.push(
+                    {
+                        targets: "#Center",
+                        duration: 100,
+                        opacity: 0,
+                        easing: 'easeInOutSine',
+                    })
                 break;
             default:
           }
@@ -312,11 +339,6 @@ function Simulation(props) {
         );
     }
 
-    const handleGoBack = () => {
-        props.setInputState({})
-        props.setShowSim(false)
-    }
-
     // controller state
     const [control, setControl] = useState(null);
 
@@ -328,10 +350,9 @@ function Simulation(props) {
         duration: 0
     });
 
-    const [showPlay, setShowPlay] = useState(false);
-
     return (
         <React.Fragment>
+            {/* {JSON.stringify(timeline)} */}
             {toggleAnime && <Anime initial={timeline} control={control} setMeta={setMeta}
                                    animeConfig={{
                                         autoplay: true,
@@ -348,7 +369,6 @@ function Simulation(props) {
                 <div className="DisplayLeftColumn">
                     {leftElems}
                 </div>
-
                 <div className="DisplayMidColumn">
                     <div id="Center" className="Center" ref={centerRef}></div>
                 </div>
@@ -358,57 +378,7 @@ function Simulation(props) {
                 </div> 
             </div>
 
-            <div className="BottomSimArea">
-                <div className="BottomLeftSimArea">
-                    {showPlay &&
-                    <div
-                        className="PlayButton"
-                        onClick={() => {
-                        setControl("play");
-                        setShowPlay(false);
-                        }}>Play</div>
-                    }
-                    {!showPlay &&
-                    <div
-                        className="PauseButton"
-                        onClick={() => {
-                        setControl("pause");
-                        setShowPlay(true);
-                        }}>Pause</div>
-                    }
-
-                    <div
-                        className="RestartButton"
-                        onClick={() => {
-                        setControl("restart");
-                        }}>Restart</div>
-                    <div
-                        className="SkipButton"
-                        onClick={() => {
-                        setControl(["seek", 100]);
-                        setShowPlay(true);
-                        }}>Skip to End</div>
-                </div>
-
-                <div className="BottomRightSimArea">
-                    <button className="GoBackButton" onClick={() => handleGoBack()}>
-                        Go Back
-                    </button>
-                </div>
-            </div>
-            <div className="SliderArea">
-                <input
-                    type="range"
-                    min="1"
-                    max="100"
-                    value={meta.progress || 0}
-                    className="slider"
-                    onChange={e => setControl(["seek", e.currentTarget.value])}>
-                </input>
-                <div className='SliderNote'>
-                    Pause to Scrub
-                </div>
-            </div>
+            <Control setControl={setControl} meta={meta} setInputState={props.setInputState} setShowSim={props.setShowSim}/>
         </React.Fragment>
     );
 }

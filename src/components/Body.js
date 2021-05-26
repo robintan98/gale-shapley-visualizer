@@ -102,6 +102,8 @@ function Body() {
                 }
             )
 
+            var colorPrefId = reversePrefIndex[proposedWoman][currentMan];
+            
             if (!(proposedWoman in matches)) { // Woman was free initially
                 matches[proposedWoman] = currentMan
 
@@ -110,6 +112,15 @@ function Body() {
                     {
                         type: "Flash Center",
                         color: "#80F7A8"
+                    }
+                )
+
+                // Push "Color Preference"
+                simInstructions.push(
+                    {
+                        type: "Color Preference",
+                        id: colorPrefId,
+                        color: color[proposedWoman]
                     }
                 )
                 
@@ -140,12 +151,21 @@ function Body() {
                         }
                     )
 
-                    // Push "Move Out"
+                    var rivalColorPrefId = reversePrefIndex[proposedWoman][rivalPartner];
+
+                    // Push "Discolor Preference"
                     simInstructions.push(
                         {
-                            type: "Move Out",
-                            manId: manId,
-                            womanId: womanId,
+                            type: "Discolor Preference",
+                            id: rivalColorPrefId,
+                        }
+                    )
+
+                    // Push "Color Preference"
+                    simInstructions.push(
+                        {
+                            type: "Color Preference",
+                            id: colorPrefId,
                             color: color[proposedWoman]
                         }
                     )
@@ -156,6 +176,16 @@ function Body() {
                         {
                             type: "Free Person",
                             id: rivalId
+                        }
+                    )
+
+                    // Push "Move Out"
+                    simInstructions.push(
+                        {
+                            type: "Move Out",
+                            manId: manId,
+                            womanId: womanId,
+                            color: color[proposedWoman]
                         }
                     )
                 } else {
