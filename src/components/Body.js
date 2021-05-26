@@ -7,7 +7,7 @@ import '../css/Body.css';
 
 function Body() {
 
-    const [numPeople, setNumPeople] = useState(2);
+    const [numMatches, setNumMatches] = useState(2);
     const [inputState, setInputState] = useState(new Map()); // global state for all input data
     const [showSim, setShowSim] = useState(false); // should be default false
     const [showAbout, setShowAbout] = useState(false);
@@ -15,17 +15,17 @@ function Body() {
     var simInstructions = []
 
     if (showSim) {
-        simInstructions = getSimInstructions(numPeople, inputState);
+        simInstructions = getSimInstructions(numMatches, inputState);
     }
 
     return (
         <React.Fragment>
             {!showAbout && !showSim &&
-                <Options numPeople={numPeople} setNumPeople={setNumPeople} setShowAbout={setShowAbout}/>
+                <Options numMatches={numMatches} setNumMatches={setNumMatches} setShowAbout={setShowAbout}/>
             }
-            {!showAbout && !showSim && <Display numPeople={numPeople} inputState={inputState} setInputState={setInputState}
-                                setShowSim={setShowSim} setNumPeople={setNumPeople} />}
-            {!showAbout && showSim && <Simulation numPeople={numPeople} inputState={inputState} setInputState={setInputState} 
+            {!showAbout && !showSim && <Display numMatches={numMatches} inputState={inputState} setInputState={setInputState}
+                                setShowSim={setShowSim} setNumMatches={setNumMatches} />}
+            {!showAbout && showSim && <Simulation numMatches={numMatches} inputState={inputState} setInputState={setInputState} 
                                     simInstructions={simInstructions} setShowSim={setShowSim} />}
             {showAbout && 
                 <About setShowAbout={setShowAbout} setInputState={setInputState}/>
@@ -34,17 +34,17 @@ function Body() {
     );
 }
 
-function getSimInstructions(numPeople, inputState) {
+function getSimInstructions(numMatches, inputState) {
     // Running Gale Shapley Algorithm
     // Initialize rank structure
     var simInstructions = []
 
     var rank = {}
-    for (var i = 1; i <= numPeople; i++) {
+    for (var i = 1; i <= numMatches; i++) {
         rank[inputState["M" + i]] = {}
         rank[inputState["W" + i]] = {}
 
-        for (var j = 1; j <= numPeople; j++) {
+        for (var j = 1; j <= numMatches; j++) {
             rank[inputState["M" + i]][inputState["M" + i + "-P" + j]] = j
             rank[inputState["W" + i]][inputState["W" + i + "-P" + j]] = j
         }
@@ -59,18 +59,18 @@ function getSimInstructions(numPeople, inputState) {
 
     // Maps from Person to ID
     var reversePersonIndex = {}
-    for (var i = 1; i <= numPeople; i++) {
+    for (var i = 1; i <= numMatches; i++) {
         reversePersonIndex[inputState["M" + i]] = "M" + i
         reversePersonIndex[inputState["W" + i]] = "W" + i
     }
 
     // Maps from Preference to ID given Person
     var reversePrefIndex = {}
-    for (var i = 1; i <= numPeople; i++) {
+    for (var i = 1; i <= numMatches; i++) {
         reversePrefIndex[inputState["M" + i]] = {}
         reversePrefIndex[inputState["W" + i]] = {}
 
-        for (var j = 1; j <= numPeople; j++) {
+        for (var j = 1; j <= numMatches; j++) {
             reversePrefIndex[inputState["M" + i]][inputState["M" + i + "-P" + j]] = "M" + i + "-P" + j
             reversePrefIndex[inputState["W" + i]][inputState["W" + i + "-P" + j]] = "W" + i + "-P" + j
         }
@@ -79,11 +79,11 @@ function getSimInstructions(numPeople, inputState) {
 
     // Maps a person's current preferences
     var personToPref = {}
-    for (var i = 1; i <= numPeople; i++) {
+    for (var i = 1; i <= numMatches; i++) {
         personToPref[inputState["M" + i]] = []
         personToPref[inputState["W" + i]] = []
 
-        for (var j = 1; j <= numPeople; j++) {
+        for (var j = 1; j <= numMatches; j++) {
             personToPref[inputState["M" + i]].push(inputState["M" + i + "-P" + j])
             personToPref[inputState["W" + i]].push(inputState["W" + i + "-P" + j])
         }
@@ -94,7 +94,7 @@ function getSimInstructions(numPeople, inputState) {
 
     // Initialize queue
     var queue = []
-    for (var i = 1; i <= numPeople; i++) {
+    for (var i = 1; i <= numMatches; i++) {
         queue.push(inputState["M" + i])
     }
 

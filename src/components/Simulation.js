@@ -102,7 +102,7 @@ function Simulation(props) {
         setCenterCoordRightX(centerRef.current.getBoundingClientRect().right);
         setCenterCoordY((centerRef.current.getBoundingClientRect().top + centerRef.current.getBoundingClientRect().bottom) / 2);
 
-        for (var i = 1; i <= props.numPeople; i++) {
+        for (var i = 1; i <= props.numMatches; i++) {
             const setterMX = idToSetterX["M" + i];
             const setterWX = idToSetterX["W" + i];
             const setterMY = idToSetterY["M" + i];
@@ -255,8 +255,8 @@ function Simulation(props) {
             case 'Flush Preferences':
                 timeline.push({delay: 1000})
 
-                for (var i = 1; i <= props.numPeople; i++) {
-                    for (var j = 1; j <= props.numPeople; j++) {
+                for (var i = 1; i <= props.numMatches; i++) {
+                    for (var j = 1; j <= props.numMatches; j++) {
                         timeline.push(
                         {
                             targets: "#M" + i + "-P" + j,
@@ -266,7 +266,7 @@ function Simulation(props) {
                         })
                     }
 
-                    for (var j = 1; j <= props.numPeople; j++) {
+                    for (var j = 1; j <= props.numMatches; j++) {
                         timeline.push(
                         {
                             targets: "#W" + i + "-P" + j,
@@ -291,10 +291,10 @@ function Simulation(props) {
 
     const leftElems = []
     const rightElems = []
-    for (var i = 1; i <= props.numPeople; i++) {
+    for (var i = 1; i <= props.numMatches; i++) {
         var leftPreferences = []
         var rightPreferences = []
-        for (var j = 1; j <= props.numPeople; j++) {
+        for (var j = 1; j <= props.numMatches; j++) {
             leftPreferences.push(
                 <div className="LeftPreference">
                     <div type="text" className="PreferenceSimInput" id={"M" + i + "-P" + j}>

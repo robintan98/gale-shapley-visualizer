@@ -7,18 +7,18 @@ function Display(props) {
     const [showWarning, setShowWarning] = useState(false);
 
     const leftElems = [];
-    for (var i = 1; i <= props.numPeople; i++) {
-        leftElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={true} setInputState={props.setInputState}/>);
+    for (var i = 1; i <= props.numMatches; i++) {
+        leftElems.push(<Entry numMatches={props.numMatches} count={i} isLeft={true} setInputState={props.setInputState}/>);
     }
 
     const rightElems = [];
-    for (var i = 1; i <= props.numPeople; i++) {
-        rightElems.push(<Entry numPeople={props.numPeople} count={i} isLeft={false} setInputState={props.setInputState}/>);
+    for (var i = 1; i <= props.numMatches; i++) {
+        rightElems.push(<Entry numMatches={props.numMatches} count={i} isLeft={false} setInputState={props.setInputState}/>);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!validateData(props.numPeople, props.inputState)) {
+        if (!validateData(props.numMatches, props.inputState)) {
             setShowWarning(true);
         } else {
             setShowWarning(false);
@@ -47,7 +47,7 @@ function Display(props) {
             'W2-P2': 'Bryan',
         };
         props.setInputState(demoInputData);
-        props.setNumPeople(2);
+        props.setNumMatches(2);
         props.setShowSim(true);
     }
 
@@ -70,11 +70,11 @@ function Display(props) {
         return JSON.stringify(array1) === JSON.stringify(array2);
     }
 
-    const validateData = (numPeople, data) => {
+    const validateData = (numMatches, data) => {
         // Check if inputs are well-formed
         var prefixes = ["M", "W"];
         for (var i = 0; i < 2; i++) {
-            for (var j = 1; j <= numPeople; j++) {
+            for (var j = 1; j <= numMatches; j++) {
                 if (!((prefixes[i] + j) in data)) {
                     return false;
                 }
@@ -83,7 +83,7 @@ function Display(props) {
                     return false;
                 }
 
-                for (var k = 1; k <= numPeople; k++) {
+                for (var k = 1; k <= numMatches; k++) {
                     if (!((prefixes[i] + j + "-P" + k) in data)) {
                         return false;
                     }
@@ -97,27 +97,27 @@ function Display(props) {
 
         // Get sets of men and women
         var menList = []
-        for (var i = 1; i <= props.numPeople; i++) {
+        for (var i = 1; i <= props.numMatches; i++) {
             menList.push(props.inputState["M" + i]);
         }
         var menSet = new Set(menList);
 
         var womenList = []
-        for (var i = 1; i <= props.numPeople; i++) {
+        for (var i = 1; i <= props.numMatches; i++) {
             womenList.push(props.inputState["W" + i]);
         }
         var womenSet = new Set(womenList);
 
-        if (menSet.size != props.numPeople || womenSet.size != props.numPeople || !shareElements(menSet, womenSet)) {
+        if (menSet.size != props.numMatches || womenSet.size != props.numMatches || !shareElements(menSet, womenSet)) {
             return false;
         }
 
         // Check if preferences match
         var prefixes = ["M", "W"];
         for (var i = 0; i < 2; i++) {
-            for (var j = 1; j <= props.numPeople; j++) {
+            for (var j = 1; j <= props.numMatches; j++) {
                 var prefList = []
-                for (var k = 1; k <= props.numPeople; k++) {
+                for (var k = 1; k <= props.numMatches; k++) {
                     prefList.push(props.inputState[prefixes[i] + j + "-P" + k]);
                 }
                 var prefSet = new Set(prefList);

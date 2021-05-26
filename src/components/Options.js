@@ -2,8 +2,8 @@ import React from 'react';
 import '../css/Options.css';
 
 function Options(props) {
-    const condUpdate = (numPeople, candValue) => {
-        return (candValue == 2 || candValue == 3 || candValue == 4) ? candValue : numPeople;
+    const condUpdate = (numMatches, candValue) => {
+        return (candValue == 2 || candValue == 3 || candValue == 4) ? candValue : numMatches;
     }
     
     const handleClick = () => {
@@ -15,8 +15,8 @@ function Options(props) {
                 <div className="EndColumnArea"></div>
                 <div className="MidColumnArea">
                     Number of Matches:
-                    <input type="number" className="NumPeopleInput" placeholder="2-4 matches"
-                            min="2" max="4" required onChange={e => props.setNumPeople(condUpdate(props.numPeople, e.target.value))}>
+                    <input type="number" className="NumMatchesInput" placeholder="2-4 matches"
+                            min="2" max="4" required onChange={e => props.setNumMatches(condUpdate(props.numMatches, e.target.value))}>
                     </input>
                 </div>
                 <div class="EndColumnArea">

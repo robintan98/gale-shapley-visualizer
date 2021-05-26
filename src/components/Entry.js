@@ -4,7 +4,7 @@ import '../css/Entry.css';
 function Entry(props) {
 
     const preferenceElems = [];
-    for (var i = 1; i <= props.numPeople; i++) {
+    for (var i = 1; i <= props.numMatches; i++) {
         if (props.isLeft) {
             var inputId = "M" + props.count + "-P" + i;
             preferenceElems.push(<div className="LeftPreference">
