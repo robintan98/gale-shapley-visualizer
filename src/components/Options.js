@@ -1,11 +1,14 @@
 import React from 'react';
 import '../css/Options.css';
 
-const condUpdate = (numPeople, candValue) => {
-    return (candValue == 2 || candValue == 3 || candValue == 4) ? candValue : numPeople;
-}
-
 function Options(props) {
+    const condUpdate = (numPeople, candValue) => {
+        return (candValue == 2 || candValue == 3 || candValue == 4) ? candValue : numPeople;
+    }
+    
+    const handleClick = () => {
+        props.setShowAbout(true)
+    }
     return (
         <React.Fragment>
             <div className="OptionsArea">
@@ -17,7 +20,7 @@ function Options(props) {
                     </input>
                 </div>
                 <div class="EndColumnArea">
-                    <button class="AboutButton">About</button>
+                    <button class="AboutButton" onClick={handleClick}>About</button>
                 </div>
             </div>
         </React.Fragment>

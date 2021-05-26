@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
+
+.FooterArea {
+    margin: 10% 17% 20px 17%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.FooterLine {
+    border: none;
+    height: 1px;
+    color: rgb(182, 182, 182);
+    background-color: rgb(192, 192, 192);
+}
+
+.FooterNote {
+    font-family: 'Assistant', sans-serif;
+    font-size: 0.8em;
+    color: rgb(160, 160, 160);
+}
+
+a {
+    color: rgb(50, 122, 255);
+    text-decoration: none;
+}

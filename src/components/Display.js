@@ -26,7 +26,7 @@ function Display(props) {
         }
     }
 
-    const handleReset = (e) => {
+    const handleReset = () => {
         setShowWarning(false);
         props.setInputState({});
     }
@@ -134,7 +134,7 @@ function Display(props) {
 
     return (
         <React.Fragment>
-            <form id="inputForm" onReset={e => handleReset(e)}>
+            <form id="inputForm" onReset={handleReset}>
                 <div className="LabelArea">
                     <div className="LabelEndColumn">Proposers</div>
                     <div className="LabelMidColumn"></div>

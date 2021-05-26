@@ -119,6 +119,7 @@
     background-color: rgb(255, 219, 219);
     border-radius: 8px;
     padding: 20px;
+    padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
 }

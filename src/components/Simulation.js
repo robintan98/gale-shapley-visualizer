@@ -297,7 +297,7 @@ function Simulation(props) {
         for (var j = 1; j <= props.numPeople; j++) {
             leftPreferences.push(
                 <div className="LeftPreference">
-                    <div type="text" class="PreferenceSimInput" id={"M" + i + "-P" + j}>
+                    <div type="text" className="PreferenceSimInput" id={"M" + i + "-P" + j}>
                         {props.inputState["M" + i + "-P" + j]}
                     </div>
                 </div>
@@ -305,7 +305,7 @@ function Simulation(props) {
 
             rightPreferences.push(
                 <div className="RightPreference">
-                    <div type="text" class="PreferenceSimInput" id={"W" + i + "-P" + j}>
+                    <div type="text" className="PreferenceSimInput" id={"W" + i + "-P" + j}>
                         {props.inputState["W" + i + "-P" + j]}
                     </div>
                 </div>
@@ -318,7 +318,7 @@ function Simulation(props) {
                     {leftPreferences}
                 </div>
                 <div className="LeftPerson">
-                    <div type="text" class="PersonSimInput" id={"M" + i} ref={idToRef["M" + i]}>
+                    <div type="text" className="PersonSimInput" id={"M" + i} ref={idToRef["M" + i]}>
                         {props.inputState["M" + i]}
                     </div>
                 </div>
@@ -328,7 +328,7 @@ function Simulation(props) {
         rightElems.push(
             <div className="RightEntryArea">
                 <div className="RightPerson">
-                    <div type="text" class="PersonSimInput" id={"W" + i} ref={idToRef["W" + i]}>
+                    <div type="text" className="PersonSimInput" id={"W" + i} ref={idToRef["W" + i]}>
                         {props.inputState["W" + i]}
                     </div>
                 </div>

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap');
+
+.AboutArea {
+    margin: 15px 17% 0 17%;
+    font-family: 'Assistant', sans-serif;
+}
+
+.GoBackArea {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.GoBackButton {
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    background-color: #f0f0f0;
+    width: 80px;
+    height: 38px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1em;
+    color: black;
+}
+
+.GoBackButton:hover {
+    transition-duration: 0.4s;
+    background-color: #D1D1D1;
+}
+
+.NoteArea {
+    flex-direction: column;
+}
+
+.NoteWrapperArea {
+    display: flex;
+    justify-content: center;
+}
+
+.NotePaper {
+    width: 85%;
+    background-color: rgb(240, 240, 240);
+    border-radius: 6px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    text-align: left;
+}
+
+.NotePaperTitle {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.NotePaperLine {
+    border: 1px dashed grey;
+}
+
+.NotePaperBody {
+    padding-top: 5px;
+    font-size: 1em;
+}
