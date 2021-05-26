@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/gale-shapley-visualizer/static/css/main.4d349595.chunk.css",
+    "main.js": "/gale-shapley-visualizer/static/js/main.5ebf1e21.chunk.js",
+    "main.js.map": "/gale-shapley-visualizer/static/js/main.5ebf1e21.chunk.js.map",
+    "runtime-main.js": "/gale-shapley-visualizer/static/js/runtime-main.86c3dd90.js",
+    "runtime-main.js.map": "/gale-shapley-visualizer/static/js/runtime-main.86c3dd90.js.map",
+    "static/js/2.8783719a.chunk.js": "/gale-shapley-visualizer/static/js/2.8783719a.chunk.js",
+    "static/js/2.8783719a.chunk.js.map": "/gale-shapley-visualizer/static/js/2.8783719a.chunk.js.map",
+    "index.html": "/gale-shapley-visualizer/index.html",
+    "static/css/main.4d349595.chunk.css.map": "/gale-shapley-visualizer/static/css/main.4d349595.chunk.css.map",
+    "static/js/2.8783719a.chunk.js.LICENSE.txt": "/gale-shapley-visualizer/static/js/2.8783719a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.86c3dd90.js",
+    "static/js/2.8783719a.chunk.js",
+    "static/css/main.4d349595.chunk.css",
+    "static/js/main.5ebf1e21.chunk.js"
+  ]
+}
