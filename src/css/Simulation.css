@@ -97,7 +97,7 @@
     border: 1px solid #888888;
     width: 50px;
     white-space: nowrap;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .PreferenceSimInput {
@@ -107,5 +107,5 @@
     width: 60px;
     height: 25px;
     white-space: nowrap;
-    overflow: scroll;
+    overflow: hidden;
 }

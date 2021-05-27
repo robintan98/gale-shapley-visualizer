@@ -151,10 +151,10 @@ function Display(props) {
                 </div>
                 <div className="BottomArea">
                     <div className="LeftBottomArea">
-                        <input type="reset" className="DemoButton" onClick={handleDemo} value="Demo"/>
+                        <button type="reset" className="DemoButton" onClick={handleDemo}>Demo</button>
                     </div>
                     <div className="RightBottomArea">
-                        <input type="reset" className="ResetButton"/>
+                        <button type="reset" className="ResetButton">Reset</button>
                         <button type="submit" className="SubmitButton" onClick={e => handleSubmit(e)}>Visualize</button>
                     </div>
                 </div>
