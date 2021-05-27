@@ -5,7 +5,7 @@ function Header() {
   return (
     <React.Fragment>
         <h1><div className="Title">
-            Gale Shapley Visualizer
+            Gale-Shapley Visualizer
         </div></h1>
         <div className="Subtitle">
             A stable matching algorithm animated for the human eye

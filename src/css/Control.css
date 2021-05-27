@@ -93,20 +93,20 @@
     justify-content: flex-end;
 }
 
-.GoBackButton {
-    border-radius: 20px;
-    border: none;
-    background-color: #ff5757;
-    width: 100px;
+.GoBackSimButton {
+    border-radius: 10px;
+    border: 1px solid #DADADA;
+    background-color: #f0f0f0;
+    width: 90px;
     height: 38px;
     font-family: 'Assistant', sans-serif;
     font-size: 1em;
-    color: white;
+    color: black;
 }
 
-.GoBackButton:hover {
+.GoBackSimButton:hover {
     transition-duration: 0.4s;
-    background-color: #fc3232;
+    background-color: #D1D1D1;
 }
 
 .SliderArea {

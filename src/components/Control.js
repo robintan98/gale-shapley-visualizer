@@ -46,7 +46,7 @@ function Control(props) {
                 </div>
 
                 <div className="BottomRightSimArea">
-                    <button className="GoBackButton" onClick={() => handleGoBack()}>
+                    <button className="GoBackSimButton" onClick={() => handleGoBack()}>
                         Go Back
                     </button>
                 </div>

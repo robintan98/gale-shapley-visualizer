@@ -55,7 +55,7 @@ function About(props) {
                                 </ul>
                                 This is known as a <em>stable matching</em>. Its applications range from economics and networks to medical school assignments and, yes, romance.
                                 <br /> <br />
-                                The Gale Shapley Algorithm proposes a greedy solution to this. We process proposers arbitrarily and go down each proposer's list of 
+                                The Gale-Shapley Algorithm proposes a greedy solution to this. We process proposers arbitrarily and go down each proposer's list of 
                                 preferences for recipients. In each round, if a recipient is free, this <em>(proposer, recipient)</em> pair becomes temporarily "engaged". If the recipient is already engaged,
                                 it will leave (and thus free) its current partner only if it prefers this proposer more. This process continues until 
                                 all <em>n</em> proposers and recipients are engaged with one other person.
